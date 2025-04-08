@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta charset="UTF-8">
+  <title>Raffle Numbers</title>
+  <style>
+    .logo-container {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .logo {
+      height: 8rem;
+      padding: 0.5rem;
+      width: auto;
+    }
+
+    h1 {
+      color: white;
+      font-size: 4rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    
+    h2 {
+      color: white;
+      font-size: 2rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background: black;
+    }
+
+    .main-number-container {
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .main-number {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #d32f2f;
+      margin-bottom: 0.5rem;
+      min-width: 300px;
+    }
+
+    .main-prize {
+      font-size: 3.0rem;
+      color: black;
+      margin-bottom: 0.5rem;
+    }
+
+    .other-numbers {
+      display: flex;
+      flex-wrap: wrap;
+      /* Allow items to wrap into new rows */
+      justify-content: center;
+      gap: 1rem;
+      color: black;
+    }
+
+    .other-number {
+      font-size: 1.5rem;
+      background: white;
+      padding: 1rem 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      min-width: 250px;
+      max-width: 250px;
+      /* Ensure some consistent size */
+      text-align: center;
+      flex: 1 1 150px;
+      /* Allow the box to grow/shrink, with a minimum size */
+    }
+
+    .other-number-number {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .other-number-prize {
+      font-size: 1.75rem;
+      color: #444;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="logo-container">
+    <img src="/logo.png" alt="Logo" class="logo">
+  </div>
+
+  <h1>Hootenanny Raffle Numbers</h1>
+  <h2>Prizes can be claimed at the prize table!</h2>
+
+
+  <div class="main-number-container">
+    <div id="main-number" class="main-number">Waiting...</div>
+    <div id="main-prize" class="main-prize">Drum Roll Please 🥁🙏</div>
+  </div>
+
+
+  <div id="other-numbers" class="other-numbers">
+    <!-- JS will populate this -->
+  </div>
+
+  <script>
+    async function fetchRaffleNumbers() {
+      try {
+        const response = await fetch('/api/current_numbers');
+        const data = (await response.json()).slice().reverse();
+
+        if (Array.isArray(data) && data.length > 0) {
+          // Update main number
+          document.getElementById('main-number').textContent = "Ticket #" + data[0].number;
+          document.getElementById('main-prize').textContent = "Prize: " + data[0].prize;
+
+          // Update other numbers
+          const otherContainer = document.getElementById('other-numbers');
+          otherContainer.innerHTML = '';
+
+          data.slice(1).forEach(entry => {
+            const div = document.createElement('div');
+            div.className = 'other-number';
+            div.innerHTML = `
+              <div class="other-number-number">Ticket #${entry.number}</div>
+              <div class="other-number-prize">Prize: ${entry.prize}</div>
+            `;
+            otherContainer.appendChild(div);
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching raffle numbers:', error);
+      }
+    }
+
+    // Fetch every second
+    setInterval(fetchRaffleNumbers, 1000);
+    fetchRaffleNumbers();
+  </script>
+
+</body>
+
+</html>

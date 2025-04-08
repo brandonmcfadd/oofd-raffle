@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Check Raffle Ticket</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: black;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    input[type="number"] {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      width: 300px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+    }
+
+    .winner {
+      color: #4caf50;
+    }
+
+    .loser {
+      color: #f44336;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Check Your Raffle Ticket</h1>
+
+  <form id="ticketForm" onsubmit="checkTicket(event)">
+    <input type="number" id="ticketInput" placeholder="Enter your ticket number" />
+    <br>
+    <button type="submit">Check</button>
+  </form>
+
+
+  <div class="result" id="result"></div>
+
+  <script>
+  async function checkTicket(event) {
+    event.preventDefault(); // prevent form from submitting normally
+
+    const input = document.getElementById('ticketInput').value;
+    const resultDiv = document.getElementById('result');
+    resultDiv.textContent = "";
+
+    if (!input) { //|| input.length !== 8
+      resultDiv.innerHTML = "<span class='loser'>Please enter a valid 8-digit number.</span>";
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/current_numbers');
+      const data = await response.json();
+
+      const match = data.find(entry => entry.number.toString() === input.toString());
+
+      if (match) {
+        resultDiv.innerHTML = `<span class='winner'>🎉 Winner!<br>Prize: ${match.prize}</span>`;
+      } else {
+        resultDiv.innerHTML = "<span class='loser'>Sorry, not a winner...😢<br>yet...😉</span>";
+      }
+    } catch (error) {
+      console.error("Error checking ticket:", error);
+      resultDiv.innerHTML = "<span class='loser'>Error checking ticket. Try again later.</span>";
+    }
+  }
+</script>
+
+
+</body>
+
+</html>
