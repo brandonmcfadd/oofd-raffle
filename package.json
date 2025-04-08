@@ -1,6 +1,6 @@
 {
   "name": "raffle-prizes",
-  "version": "0.1",
+  "version": "0.1.1",
   "description": "A simple Node app to broadcast raffle tickets drawn",
   "main": "server.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "node": "14.x"
   },
   "repository": {
-    "url": "https://github.com/brandonmcfadd/"
+    "url": "https://github.com/brandonmcfadd/oofd-raffle"
   },
   "license": "MIT",
   "keywords": [
