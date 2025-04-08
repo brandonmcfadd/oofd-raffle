@@ -35,12 +35,12 @@ fastify.register(require("@fastify/view"), {
 
 fastify.get("/", async function (request, reply) {  
   // The Handlebars code will be able to access the parameter values and build them into the page
-  return reply.view("/src/pages/index.hbs");
+  return reply.view("/src/pages/check.hbs");
 });
 
-fastify.get("/check", async function (request, reply) {  
+fastify.get("/display", async function (request, reply) {  
   // The Handlebars code will be able to access the parameter values and build them into the page
-  return reply.view("/src/pages/check.hbs");
+  return reply.view("/src/pages/index.hbs");
 });
 
 fastify.get("/api/current_numbers", async function (request, reply) {
