@@ -128,3 +128,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.node-persist/storage/388d0e540627d62e434f4620fb657c79
