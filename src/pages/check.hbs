@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLJD57NQRY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NLJD57NQRY');
+  </script>
   <meta charset="UTF-8">
   <title>Check Raffle Ticket</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -117,14 +126,8 @@
   <h1>Check Your Hootenanny Raffle Ticket!</h1>
 
   <form id="ticketForm" onsubmit="checkTicket(event)">
-    <input
-      type="text"
-      id="ticketInput"
-      placeholder="Enter your ticket number"
-      inputmode="numeric"
-      pattern="\d*"
-      maxlength="12"
-    />
+    <input type="text" id="ticketInput" placeholder="Enter your ticket number" inputmode="numeric" pattern="\d*"
+      maxlength="12" />
     <button type="submit">Check Ticket</button>
   </form>
 
