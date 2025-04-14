@@ -40,7 +40,7 @@
       margin: 1rem 0;
       text-align: center;
     }
-    
+
     h2 {
       color: white;
       font-size: 2rem;
@@ -111,6 +111,55 @@
       font-size: 1.75rem;
       color: #444;
     }
+
+    /* Base styles (desktop/tablet) already mostly set correctly */
+
+    /* Responsive tweaks for mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      .logo-container {
+        position: fixed;
+        top: unset;
+        bottom: 1rem;
+        right: 50%;
+        transform: translateX(50%);
+        z-index: 10;
+      }
+
+      .logo {
+        height: 6rem;
+      }
+
+      .main-number-container {
+        width: 100%;
+        margin: 1rem auto;
+      }
+
+      .other-numbers {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .other-number {
+        width: 100%;
+        max-width: 90%;
+        min-width: unset;
+        font-size: 1.25rem;
+      }
+
+      .other-number-number {
+        font-size:
   </style>
 
 </head>

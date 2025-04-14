@@ -33,6 +33,9 @@ fastify.register(require("@fastify/view"), {
   },
 }); 
 
+const fs = require('fs');
+const prizes = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/prizes.json')));
+
 fastify.get("/", async function (request, reply) {  
   // The Handlebars code will be able to access the parameter values and build them into the page
   return reply.view("/src/pages/check.hbs");
@@ -43,13 +46,19 @@ fastify.get("/display", async function (request, reply) {
   return reply.view("/src/pages/index.hbs");
 });
 
-fastify.get("/api/current_numbers", async function (request, reply) {
+
+fastify.get('/api/current_numbers', async (request, reply) => {
   await storage.init();
+  const numbers = await storage.getItem('current_numbers') || [];
 
-  const numbers = await storage.getItem("current_numbers") || [];
+  const enriched = numbers.map(entry => ({
+    number: entry.number,
+    prize: prizes[entry.prize]?.ShortDesc || `Prize #${entry.prize}`
+  }));
 
-  return reply.send(numbers);
+  return reply.send(enriched);
 });
+
 
 fastify.post("/api/current_numbers", async function (request, reply) {
   const { numbers } = request.body;
