@@ -53,7 +53,7 @@ fastify.get('/api/current_numbers', async (request, reply) => {
 
   const enriched = numbers.map(entry => ({
     number: entry.number,
-    prize: prizes[entry.prize]?.ShortDesc || `Prize #${entry.prize}`
+    prize: `#${entry.prize} - ${prizes[entry.prize]?.ShortDesc}` || `#${entry.number} - ${entry.prize}`
   }));
 
   return reply.send(enriched);
