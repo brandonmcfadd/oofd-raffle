@@ -98,12 +98,12 @@
       }
 
       h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
 
       input,
       button {
-        font-size: 1.25rem;
+        font-size: 1rem;
       }
     }
   </style>
@@ -114,7 +114,7 @@
     <img src="/logo.png" alt="Logo" class="logo">
   </div>
 
-  <h1>Check Your Hootenanny Raffle Ticket</h1>
+  <h1>Check Your Hootenanny Raffle Ticket!</h1>
 
   <form id="ticketForm" onsubmit="checkTicket(event)">
     <input
@@ -123,7 +123,7 @@
       placeholder="Enter your ticket number"
       inputmode="numeric"
       pattern="\d*"
-      maxlength="8"
+      maxlength="12"
     />
     <button type="submit">Check Ticket</button>
   </form>
@@ -145,7 +145,7 @@
         const match = data.find(entry => entry.number.toString() === input.toString());
 
         if (match) {
-          resultDiv.innerHTML = `<span class='winner'>🎉 Winner!<br>Prize: ${match.prize}</span>`;
+          resultDiv.innerHTML = `<span class='winner'>🎉 Winner!<br>${match.prize}</span>`;
         } else {
           resultDiv.innerHTML = "<span class='loser'>Sorry, not a winner...😢<br>yet...😉</span>";
         }
