@@ -151,7 +151,7 @@
   <script>
     async function fetchWinners() {
       const res = await fetch('/api/current_numbers');
-      const data = await res.json();
+      const data = (await res.json()).slice().reverse();
       const list = document.getElementById('winner-list');
       list.innerHTML = '';
 
