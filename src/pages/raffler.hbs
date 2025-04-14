@@ -136,7 +136,7 @@
     <form id="new-winner-form">
       <input type="number" name="ticket_number" id="ticket_number" placeholder="Ticket Number" inputmode="numeric"
         pattern="\d*" maxlength="12" required />
-      <input type="text" name="prize" id="prize" placeholder="Prize #" inputmode="numeric" required />
+      <input type="text" name="prize" id="prize" placeholder="Prize #" inputmode="text" required />
       <button type="submit">Submit Winner</button>
     </form>
   </section>
@@ -209,7 +209,10 @@
       }
     });
 
+    // Fetch every second
+    setInterval(fetchWinners, 5000);
     fetchWinners();
+
   </script>
 </body>
 
