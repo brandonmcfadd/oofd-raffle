@@ -48,6 +48,10 @@ fastify.get("/display", async function (request, reply) {
   return reply.view("/src/pages/index.hbs");
 });
 
+fastify.get("/raffler", async function (request, reply) {  
+  // The Handlebars code will be able to access the parameter values and build them into the page
+  return reply.view("/src/pages/raffler.hbs");
+});
 
 fastify.get('/api/current_numbers', async (request, reply) => {
   await storage.init();
@@ -57,7 +61,7 @@ fastify.get('/api/current_numbers', async (request, reply) => {
     number: entry.number,
     prize: prizes[entry.prize] && prizes[entry.prize].ShortDesc 
       ? `#${entry.prize} - ${prizes[entry.prize].ShortDesc}` 
-      : `Prize #${entry.prize}`
+      : `${entry.prize}`
   }));
 
   return reply.send(enriched);

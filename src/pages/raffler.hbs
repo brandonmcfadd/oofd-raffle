@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLJD57NQRY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NLJD57NQRY');
+  </script>
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <title>Raffle Panel Admin</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    input[type="text"], input[type="number"] {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      margin: 0.5rem;
+      border-radius: 5px;
+      border: none;
+      width: 300px;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .winner-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .winner-entry {
+      background: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .winner-text {
+      font-size: 1.2rem;
+    }
+
+    .delete-btn {
+      background-color: #f44336;
+      font-size: 0.9rem;
+      padding: 0.25rem 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Admin Panel</h1>
+
+  <section>
+    <h2>Add New Raffle Winner</h2>
+    <form id="new-winner-form">
+      <input type="number" name="ticket_number" id="ticket_number" placeholder="Ticket Number" required />
+      <input type="text" name="prize" id="prize" placeholder="Prize" required />
+      <button type="submit">Submit Winner</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Current Winners</h2>
+    <div class="winner-list" id="winner-list">
+      <!-- Winners populated by JS -->
+    </div>
+  </section>
+
+  <script>
+    async function fetchWinners() {
+      const res = await fetch('/api/current_numbers');
+      const data = await res.json();
+      const list = document.getElementById('winner-list');
+      list.innerHTML = '';
+
+      data.forEach(entry => {
+        const div = document.createElement('div');
+        div.className = 'winner-entry';
+
+        div.innerHTML = `
+          <div class="winner-text">Ticket #${entry.number}<br>${entry.prize}</div>
+          <button class="delete-btn" data-number="${entry.number}">Delete</button>
+        `;
+
+        list.appendChild(div);
+      });
+    }
+
+    document.getElementById('new-winner-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const ticket_number = document.getElementById('ticket_number').value;
+      const prize = document.getElementById('prize').value;
+
+      const formData = new URLSearchParams();
+      formData.append('ticket_number', ticket_number);
+      formData.append('prize', prize);
+
+      const response = await fetch('/api/current_numbers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+      });
+
+      if (response.ok) {
+        this.reset();
+        fetchWinners();
+      }
+    });
+
+    document.getElementById('winner-list').addEventListener('click', async function (e) {
+      if (e.target.classList.contains('delete-btn')) {
+        const number = e.target.getAttribute('data-number');
+
+        const formData = new URLSearchParams();
+        formData.append('ticket_number', number);
+
+        const response = await fetch('/api/delete_number', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formData.toString()
+        });
+
+        if (response.ok) {
+          fetchWinners();
+        }
+      }
+    });
+
+    // Fetch winners on load
+    fetchWinners();
+  </script>
+</body>
+</html>
