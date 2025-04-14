@@ -4,18 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Check Raffle Ticket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    .logo {
-      height: 10rem;
-      /* Adjust size as needed */
-      width: auto;
-    }
-
-    h1 {
-      color: white;
-      font-size: 3rem;
-      margin: 2rem 0;
-      text-align: center;
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -24,30 +16,67 @@
       color: white;
       padding: 2rem;
       text-align: center;
+      margin: 0;
+    }
+
+    .logo-container {
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      height: 8rem;
+      width: auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     input[type="number"] {
-      padding: 0.5rem;
-      font-size: 1.2rem;
-      width: 300px;
-      border-radius: 5px;
+      padding: 1rem;
+      font-size: 1.5rem;
+      border-radius: 10px;
       border: none;
-      margin-bottom: 1rem;
+      width: 100%;
+    }
+
+    /* Use type="text" with numeric restrictions for better mobile experience */
+    input[type="text"] {
+      padding: 1rem;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      border: none;
+      width: 100%;
     }
 
     button {
-      padding: 0.5rem 1rem;
-      font-size: 1.2rem;
+      padding: 1rem;
+      font-size: 1.5rem;
       background-color: #d32f2f;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b71c1c;
     }
 
     .result {
       margin-top: 2rem;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
+      font-weight: bold;
     }
 
     .winner {
@@ -57,6 +86,25 @@
     .loser {
       color: #f44336;
     }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .logo {
+        height: 10rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      input,
+      button {
+        font-size: 1.25rem;
+      }
+    }
   </style>
 </head>
 
@@ -64,29 +112,30 @@
   <div class="logo-container">
     <img src="/logo.png" alt="Logo" class="logo">
   </div>
+
   <h1>Check Your Raffle Ticket</h1>
 
   <form id="ticketForm" onsubmit="checkTicket(event)">
-    <input type="number" id="ticketInput" placeholder="Enter your ticket number" />
-    <br>
-    <button type="submit">Check</button>
+    <input
+      type="text"
+      id="ticketInput"
+      placeholder="Enter your ticket number"
+      inputmode="numeric"
+      pattern="\d*"
+      maxlength="8"
+    />
+    <button type="submit">Check Ticket</button>
   </form>
-
 
   <div class="result" id="result"></div>
 
   <script>
     async function checkTicket(event) {
-      event.preventDefault(); // prevent form from submitting normally
+      event.preventDefault();
 
-      const input = document.getElementById('ticketInput').value;
+      const input = document.getElementById('ticketInput').value.trim();
       const resultDiv = document.getElementById('result');
       resultDiv.textContent = "";
-
-      if (!input) { //|| input.length !== 8
-        resultDiv.innerHTML = "<span class='loser'>Please enter a valid 8-digit number.</span>";
-        return;
-      }
 
       try {
         const response = await fetch('/api/current_numbers');
@@ -105,8 +154,6 @@
       }
     }
   </script>
-
-
 </body>
 
 </html>
