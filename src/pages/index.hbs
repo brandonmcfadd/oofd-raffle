@@ -37,7 +37,7 @@
     h1 {
       color: white;
       font-size: 3rem;
-      margin: 1rem 0;
+      margin: 0.5rem 0;
       text-align: center;
     }
 
@@ -65,7 +65,7 @@
     }
 
     .main-number {
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: bold;
       color: #d32f2f;
       margin-top: 0.5rem;
@@ -74,7 +74,7 @@
     }
 
     .main-prize {
-      font-size: 2.5rem;
+      font-size: 1.75rem;
       color: black;
       margin-bottom: 0.5rem;
     }
@@ -84,14 +84,13 @@
       flex-wrap: wrap;
       /* Allow items to wrap into new rows */
       justify-content: center;
-      gap: 1rem;
+      gap: 0.5rem;
       color: black;
     }
 
     .other-number {
-      font-size: 1.5rem;
       background: white;
-      padding: 1.5rem;
+      padding: 0.75rem;
       border-radius: 10px;
       min-width: 250px;
       max-width: 250px;
@@ -100,13 +99,18 @@
     }
 
     .other-number-number {
-      font-size: 1.75rem;
+      font-size: 1.25rem;
       font-weight: bold;
     }
 
     .other-number-prize {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       color: #444;
+    }
+
+    .qr-code-container {
+      display: none;
+      /* hidden by default, shown only on desktop */
     }
 
     /* Base styles (desktop/tablet) already mostly set correctly */
@@ -165,6 +169,25 @@
         font-size: 2.5rem;
       }
     }
+
+    @media (min-width: 1101px) {
+      .qr-code-container {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        display: block;
+        z-index: 1000;
+        color: white;
+        font-size: 1.15rem;
+        /* ensure it appears above background */
+      }
+
+      .qr-code {
+        width: 150px;
+        height: auto;
+        opacity: 0.9;
+      }
+    }
   </style>
 
 </head>
@@ -186,6 +209,11 @@
 
   <div id="other-numbers" class="other-numbers">
     <!-- JS will populate this -->
+  </div>
+
+  <div class="qr-code-container">
+    <img src="/qrcode.svg" alt="QR Code" class="qr-code">
+    <p>Scan Here or visit<br>hootenanny.oofd.org<br>to check your ticket!</p>
   </div>
 
   <script>
