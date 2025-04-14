@@ -116,6 +116,10 @@ fastify.post("/api/delete_number", async function (request, reply) {
   return { success: true, deleted: numberToDelete };
 });
 
+fastify.get('/api/prizes', async (request, reply) => {
+  return prizes;
+});
+
 
 // Run the server and report out to the logs
 fastify.listen(

@@ -50,7 +50,8 @@
 
     input[type="text"],
     input[type="number"],
-    input[type="password"] {
+    input[type="password"],
+    select {
       padding: 0.75rem;
       font-size: 1.1rem;
       margin: 0.5rem 0;
@@ -59,7 +60,6 @@
       width: 100%;
       box-sizing: border-box;
     }
-
 
     button {
       padding: 0.75rem 1.5rem;
@@ -123,6 +123,7 @@
 
       input[type="text"],
       input[type="number"],
+      select,
       button {
         font-size: 1rem;
       }
@@ -137,7 +138,13 @@
     <form id="new-winner-form">
       <input type="number" name="ticket_number" id="ticket_number" placeholder="Ticket Number" inputmode="numeric"
         pattern="\d*" maxlength="12" required />
-      <input type="text" name="prize" id="prize" placeholder="Prize #" inputmode="text" required />
+
+      <select id="prize" name="prize" required>
+        <!-- JS will populate this -->
+      </select>
+
+      <input type="text" id="custom-prize" placeholder="Enter custom prize" style="display: none;" />
+
       <button type="submit">Submit Winner</button>
     </form>
   </section>
@@ -145,7 +152,7 @@
   <section>
     <h2>Current Winners</h2>
     <div class="winner-list" id="winner-list">
-      <!-- Winners populated by JS -->
+      <!-- JS will populate this -->
     </div>
   </section>
 
@@ -173,7 +180,10 @@
       e.preventDefault();
 
       const ticket_number = document.getElementById('ticket_number').value;
-      const prize = document.getElementById('prize').value;
+      const selectEl = document.getElementById('prize');
+      const customEl = document.getElementById('custom-prize');
+
+      const prize = selectEl.value === 'Other' ? customEl.value : selectEl.value;
 
       const formData = new URLSearchParams();
       formData.append('ticket_number', ticket_number);
@@ -187,7 +197,9 @@
 
       if (response.ok) {
         this.reset();
-        fetchWinners();
+        customEl.style.display = 'none';
+        updatePrizeDropdown();
+        await fetchWinners();
       }
     });
 
@@ -205,16 +217,68 @@
         });
 
         if (response.ok) {
-          fetchWinners();
+          updatePrizeDropdown();
+          await fetchWinners();
         }
       }
     });
 
-    // Fetch every second
-    setInterval(fetchWinners, 5000);
+    let allPrizes = {};
+
+    async function loadPrizes() {
+      const res = await fetch('/api/prizes');
+      allPrizes = await res.json();
+      updatePrizeDropdown();
+    }
+
+    function updatePrizeDropdown() {
+      const select = document.getElementById('prize');
+      const custom = document.getElementById('custom-prize');
+
+      // 🛑 Exit early if a selection other than the first one is made
+      if (select.selectedIndex > 0) return;
+
+      // Gather claimed prizes
+      const claimed = Array.from(document.querySelectorAll('.winner-text')).map(el => {
+        const match = el.innerHTML.match(/<br>(.*)/);
+        return match ? match[1].trim() : null;
+      }).filter(Boolean);
+
+      // Clear and rebuild options
+      select.innerHTML = '';
+
+      Object.entries(allPrizes).forEach(([key, val]) => {
+        const label = `${key} - ${val.ShortDesc}`;
+        if (!claimed.includes(label)) {
+          const option = document.createElement('option');
+          option.value = label;
+          option.textContent = label;
+          select.appendChild(option);
+        }
+      });
+
+      // Add "Other" option
+      const otherOption = document.createElement('option');
+      otherOption.value = 'Other';
+      otherOption.textContent = 'Other';
+      select.appendChild(otherOption);
+
+      // Toggle custom input
+      select.onchange = () => {
+        const isOther = select.value === 'Other';
+        custom.style.display = isOther ? 'block' : 'none';
+        custom.required = isOther;
+      };
+    }
+
+
+    // Initial load
     fetchWinners();
+    loadPrizes();
+    updatePrizeDropdown();
+    setInterval(fetchWinners, 5000);
+    setInterval(updatePrizeDropdown, 1000);
   </script>
 </body>
-
 
 </html>
