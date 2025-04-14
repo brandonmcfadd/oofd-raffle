@@ -231,24 +231,31 @@
         const response = await fetch('/api/current_numbers');
         const data = (await response.json()).slice().reverse();
 
+        const mainNumberEl = document.getElementById('main-number');
+        const mainPrizeEl = document.getElementById('main-prize');
+        const otherContainer = document.getElementById('other-numbers');
+
         if (Array.isArray(data) && data.length > 0) {
           // Update main number
-          document.getElementById('main-number').textContent = "Ticket #" + data[0].number;
-          document.getElementById('main-prize').textContent = data[0].prize;
+          mainNumberEl.textContent = "Ticket #" + data[0].number;
+          mainPrizeEl.textContent = data[0].prize;
 
           // Update other numbers
-          const otherContainer = document.getElementById('other-numbers');
           otherContainer.innerHTML = '';
-
           data.slice(1).forEach(entry => {
             const div = document.createElement('div');
             div.className = 'other-number';
             div.innerHTML = `
-              <div class="other-number-number">Ticket #${entry.number}</div>
-              <div class="other-number-prize">${entry.prize}</div>
-            `;
+            <div class="other-number-number">Ticket #${entry.number}</div>
+            <div class="other-number-prize">${entry.prize}</div>
+          `;
             otherContainer.appendChild(div);
           });
+        } else {
+          // Reset main prize area if no data
+          mainNumberEl.textContent = "Waiting...";
+          mainPrizeEl.textContent = "Drum Roll Please 🥁🙏";
+          otherContainer.innerHTML = '';
         }
       } catch (error) {
         console.error('Error fetching raffle numbers:', error);

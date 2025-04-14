@@ -11,6 +11,8 @@ const fastify = require("fastify")({
   logger: false,
 });
 
+fastify.register(require('@fastify/formbody'));
+
 const storage = require('node-persist');
 const cache = require('nano-cache');
 
@@ -63,38 +65,49 @@ fastify.get('/api/current_numbers', async (request, reply) => {
 
 
 fastify.post("/api/current_numbers", async function (request, reply) {
-  const { numbers } = request.body;
+  const { ticket_number, prize } = request.body;
 
-  if (!Array.isArray(numbers)) {
-    return reply.code(400).send({ error: "Invalid input, expected an array" });
+  if (!ticket_number || !prize) {
+    return reply.code(400).send({ error: "Missing ticket_number or prize" });
   }
 
   await storage.init();
 
   const existing = await storage.getItem("current_numbers") || [];
 
-  // Append new entries
-  const updated = existing.concat(numbers);
+  const newEntry = {
+    number: parseInt(ticket_number, 10),
+    prize: prize.toString()
+  };
+
+  const updated = existing.concat(newEntry);
 
   await storage.setItem("current_numbers", updated);
 
   return reply.send({ status: "ok", count: updated.length });
 });
 
-fastify.post("/api/delete_number", async function (request, reply) {
-  const { number } = request.body;
 
-  if (!number) {
-    return reply.code(400).send({ error: "Missing number to delete" });
+fastify.post("/api/delete_number", async function (request, reply) {
+  const { ticket_number } = request.body;
+
+  if (!ticket_number) {
+    return reply.code(400).send({ error: "Missing ticket_number" });
+  }
+
+  const numberToDelete = parseInt(ticket_number, 10);
+  if (isNaN(numberToDelete)) {
+    return reply.code(400).send({ error: "Invalid ticket_number" });
   }
 
   await storage.init();
   const numbers = (await storage.getItem("current_numbers")) || [];
 
-  const filtered = numbers.filter(entry => entry.number !== number);
+  const filtered = numbers.filter(entry => entry.number !== numberToDelete);
 
   await storage.setItem("current_numbers", filtered);
-  return { success: true, deleted: number };
+
+  return { success: true, deleted: numberToDelete };
 });
 
 
