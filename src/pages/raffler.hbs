@@ -133,7 +133,8 @@
   <section>
     <h2>Add New Raffle Winner</h2>
     <form id="new-winner-form">
-      <input type="number" name="ticket_number" id="ticket_number" placeholder="Ticket Number" required />
+      <input type="number" name="ticket_number" id="ticket_number" placeholder="Ticket Number" inputmode="numeric" pattern="\d*"
+      maxlength="12" required />
       <input type="text" name="prize" id="prize" placeholder="Prize" required />
       <button type="submit">Submit Winner</button>
     </form>
