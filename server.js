@@ -116,19 +116,6 @@ fastify.post("/api/delete_number", async function (request, reply) {
   return { success: true, deleted: numberToDelete };
 });
 
-fastify.post('/api/check_password', async (request, reply) => {
-  const { password } = request.body;
-
-  // Replace with secure password handling in production
-  const correctPassword = process.env.ADMIN_PASSWORD;
-
-  if (password === correctPassword) {
-    return { success: true };
-  } else {
-    return reply.status(401).send({ error: 'Unauthorized' });
-  }
-});
-
 
 // Run the server and report out to the logs
 fastify.listen(
