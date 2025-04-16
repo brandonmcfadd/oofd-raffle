@@ -1,74 +1,107 @@
 {
-    "1": {
-      "ShortDesc": "Garden Seedling Pack"
-    },
-    "2": {
-      "ShortDesc": "$25 Avondale Bowl Gift Card"
-    },
-    "3": {
-      "ShortDesc": "Bike Tune Up (BFF Bikes)"
-    },
-    "4": {
-      "ShortDesc": "Ortlieb Panniers & Water Bottles"
-    },
-    "5": {
-      "ShortDesc": "????? (Chrome)"
-    },
-    "6": {
-      "ShortDesc": "Bike Build W/ Brian (Cog Cycles)"
-    },
-    "7": {
-      "ShortDesc": "Lookfar Bike (Size Medium)"
-    },
-    "8": {
-      "ShortDesc": "Five Point Holistic Health Gift Card"
-    },
-    "9": {
-      "ShortDesc": "Items from Helinox"
-    },
-    "10": {
-      "ShortDesc": "$150 JC Lind Bike Shop Gift Card"
-    },
-    "11": {
-      "ShortDesc": "Jimmybars!"
-    },
-    "12": {
-      "ShortDesc": "POC Helmet"
-    },
-    "13": {
-      "ShortDesc": "Morton Arboretum Guest Passes"
-    },
-    "14": {
-      "ShortDesc": "Urban Bikers' Tricks & Tips!"
-    },
-    "15": {
-      "ShortDesc": "Urban Bikers' Tricks & Tips!"
-    },
-    "16": {
-      "ShortDesc": "Miir Chicago 32oz Bottle"
-    },
-    "17": {
-      "ShortDesc": "Terravia Hip Pack"
-    },
-    "18": {
-      "ShortDesc": "Black Hole Waist Pack"
-    },
-    "19": {
-      "ShortDesc": "Black Hole Duffel 55L"
-    },
-    "20": {
-      "ShortDesc": "Black Hole Pack 32L"
-    },
-    "21": {
-      "ShortDesc": "Road Runner Anywhere Bikepacking Panniers"
-    },
-    "22": {
-      "ShortDesc": "The Coast Handlebar Gen 2 (440mm)"
-    },
-    "23": {
-      "ShortDesc": "The Coast Handlebar Gen 2 (480mm)"
-    },
-    "24": {
-      "ShortDesc": "The Coast Handlebar Gen 2 (520mm)"
-    }
+  "1": {
+    "ShortDesc": "Medium Lookfar Black & White Bike",
+    "Donor": "Fairdale",
+    "Value": 629
+  },
+  "2": {
+    "ShortDesc": "A Bike",
+    "Donor": "Wheel and Sprocket",
+    "Value": null
+  },
+  "3": {
+    "ShortDesc": "Tour de Chequamegon Ticket (104-Mile Bikepacking Trip)",
+    "Donor": "Wheel and Sprocket",
+    "Value": 575
+  },
+  "4": {
+    "ShortDesc": "Bike Build with Brian",
+    "Donor": "Cog Cycles and Yarn",
+    "Value": 200
+  },
+  "5": {
+    "ShortDesc": "Miir Bottle, Hip Pack, and Black Hole 32L Pack",
+    "Donor": "Patagonia",
+    "Value": 268
+  },
+  "6": {
+    "ShortDesc": "Black Hole Waist Pack and Duffel 55L",
+    "Donor": "Patagonia",
+    "Value": 248
+  },
+  "7": {
+    "ShortDesc": "Ortlieb Panniers and Water Bottles",
+    "Donor": "Boulevard Bikes",
+    "Value": 230
+  },
+  "8": {
+    "ShortDesc": "$150 Gift Card + Ride with GPS Premium",
+    "Donor": "JC Lind Bike Shop, Ride with GPS",
+    "Value": 230
+  },
+  "9": {
+    "ShortDesc": "Road Runner Bikepacking Panniers",
+    "Donor": "Pedal to the People",
+    "Value": 325
+  },
+  "10": {
+    "ShortDesc": "Helinox Chair + Arboretum Passes",
+    "Donor": "Helinox, Morton Arboretum",
+    "Value": 259
+  },
+  "11": {
+    "ShortDesc": "Sunset Chair + Mesh Beach Chair",
+    "Donor": "Helinox",
+    "Value": 350
+  },
+  "12": {
+    "ShortDesc": "Bike Tune-Up, T-Shirt, Ride with GPS Premium",
+    "Donor": "Roscoe Village Cycles, Ride with GPS",
+    "Value": 200
+  },
+  "13": {
+    "ShortDesc": "Tune-Up, Ride with GPS Premium, Arboretum Passes",
+    "Donor": "BFF Bikes, Ride with GPS, Morton Arboretum",
+    "Value": 225
+  },
+  "14": {
+    "ShortDesc": "Private Garden Experience for 3",
+    "Donor": "Verdant Place",
+    "Value": 200
+  },
+  "15": {
+    "ShortDesc": "Seedlings, Gift Cards, Bars, Book",
+    "Donor": "Eric Bolden, Avondale Bowl, Five Point Holistic, Jimmybar, Dave Glow",
+    "Value": 284
+  },
+  "16": {
+    "ShortDesc": "POC Helmet, Book, Bars, Arboretum Passes, Kadet Sling",
+    "Donor": "Jordan Evangelista, Dave Glow, Jimmybar, Morton Arboretum, Chrome Industries",
+    "Value": 294
+  },
+  "17": {
+    "ShortDesc": "Handlebar, Bars, Arboretum Passes, Cage, Bottle, Socks",
+    "Donor": "PNW Components, Jimmybar, Morton Arboretum, PDW",
+    "Value": 268
+  },
+  "18": {
+    "ShortDesc": "Alarm, Lights, Bars, Arboretum Passes, Handlebar & Tape",
+    "Donor": "Knog, Jimmybar, Morton Arboretum, PNW Components",
+    "Value": 325
+  },
+  "19": {
+    "ShortDesc": "Bell, Water Bottle, Bars, T-Shirt, Cage, Bag",
+    "Donor": "Spurcycle, Jimmybar, PDW, Chrome Industries",
+    "Value": 310
+  },
+  "20": {
+    "ShortDesc": "Compact Bell, Bars, Citizen 24L Bag",
+    "Donor": "Spurcycle, Jimmybar, Chrome Industries",
+    "Value": 259
+  },
+  "21": {
+    "ShortDesc": "Sodo Sling Bag + Ortlieb Panniers",
+    "Donor": "Chrome Industries, Offbeat Bikes",
+    "Value": 255
   }
+}

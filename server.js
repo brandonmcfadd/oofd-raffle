@@ -60,9 +60,9 @@ fastify.get('/api/current_numbers', async (request, reply) => {
   const numbers = await storage.getItem('current_numbers') || [];
 
   const enriched = numbers.map(entry => ({
-    number: entry.number,
-    prize: prizes[entry.prize] && prizes[entry.prize].ShortDesc 
-      ? `#${entry.prize} - ${prizes[entry.prize].ShortDesc}` 
+    number: `Ticket #${entry.number}<br>Prize #${entry.prize}`,
+    prize: prizes[entry.prize] && prizes[entry.prize].ShortDesc && prizes[entry.prize].Donor 
+      ? `${prizes[entry.prize].ShortDesc}<br><b>Donor:</b> <i>${prizes[entry.prize].Donor}</i>` 
       : `${entry.prize}`
   }));
 

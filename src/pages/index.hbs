@@ -57,7 +57,7 @@
       text-align: center;
       margin: 0.5rem 0;
     }
-    
+
     h3 {
       color: white;
       font-size: 1.25rem;
@@ -146,7 +146,7 @@
       h2 {
         font-size: 2.25rem;
       }
-      
+
       h3 {
         font-size: 2rem;
       }
@@ -251,8 +251,8 @@
 
         if (Array.isArray(data) && data.length > 0) {
           // Update main number
-          mainNumberEl.textContent = "Ticket #" + data[0].number;
-          mainPrizeEl.textContent = data[0].prize;
+          mainNumberEl.innerHTML = data[0].number;
+          mainPrizeEl.innerHTML = data[0].prize;
 
           // Update other numbers
           otherContainer.innerHTML = '';
@@ -260,7 +260,7 @@
             const div = document.createElement('div');
             div.className = 'other-number';
             div.innerHTML = `
-            <div class="other-number-number">Ticket #${entry.number}</div>
+            <div class="other-number-number">${entry.number}</div>
             <div class="other-number-prize">${entry.prize}</div>
           `;
             otherContainer.appendChild(div);
