@@ -93,7 +93,7 @@
     }
 
     .winner-text {
-      font-size: 1.1rem;
+      font-size: 1rem;
       word-break: break-word;
     }
 
@@ -168,7 +168,7 @@
         div.className = 'winner-entry';
 
         div.innerHTML = `
-          <div class="winner-text">Ticket #${entry.number}<br>${entry.prize}</div>
+          <div class="winner-text">Ticket #${entry.number}<br>Prize #${entry.prize_number}<br>${entry.prize}</div>
           <button class="delete-btn" data-number="${entry.number}">Delete</button>
         `;
 
@@ -238,21 +238,20 @@
       // 🛑 Exit early if a selection other than the first one is made
       if (select.selectedIndex > 0) return;
 
-      // Gather claimed prizes
-      const claimed = Array.from(document.querySelectorAll('.winner-text')).map(el => {
-        const match = el.innerHTML.match(/<br>(.*)/);
-        return match ? match[1].trim() : null;
+      // Gather claimed prize numbers
+      const claimedPrizeNumbers = Array.from(document.querySelectorAll('.winner-text')).map(el => {
+        const match = el.innerHTML.match(/Prize #(\d+)/);
+        return match ? match[1] : null;
       }).filter(Boolean);
 
       // Clear and rebuild options
       select.innerHTML = '';
 
       Object.entries(allPrizes).forEach(([key, val]) => {
-        const label = `${key} - ${val.ShortDesc}`;
-        if (!claimed.includes(label)) {
+        if (!claimedPrizeNumbers.includes(key)) {
           const option = document.createElement('option');
-          option.value = label;
-          option.textContent = label;
+          option.value = key; // e.g., "5"
+          option.textContent = `${key} - ${val.ShortDesc}`;
           select.appendChild(option);
         }
       });

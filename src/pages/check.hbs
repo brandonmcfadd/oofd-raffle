@@ -182,7 +182,7 @@
         const match = data.find(entry => entry.number.toString() === input.toString());
 
         if (match) {
-          resultDiv.innerHTML = `<span class='winner'>🎉 Winner!<br>${match.prize}</span>`;
+          resultDiv.innerHTML = `<span class='winner'>🎉 Winner!<br>Prize #${match.prize_number}<br>${match.prize}</span>`;
         } else {
           resultDiv.innerHTML = "<span class='loser'>Sorry, not a winner...😢<br>yet...😉</span>";
         }
