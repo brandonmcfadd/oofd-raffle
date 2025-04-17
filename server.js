@@ -95,7 +95,7 @@ fastify.post("/api/current_numbers", async function (request, reply) {
 
   await storage.setItem("current_numbers", updated);
 
-  return reply.send({ status: "ok", count: updated.length });
+  return reply.send({ status: true, count: updated.length });
 });
 
 
