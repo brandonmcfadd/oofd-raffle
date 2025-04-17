@@ -174,6 +174,12 @@
     </div>
   </section>
 
+  <div class="thank-you-container">
+    <p>Built for <a href="https://oofd.org" target="_blank">Out Our Front Door</a> with 💙 by <a
+        href="https://github.com/brandonmcfadd/oofd-raffle" target="_blank">Brandon
+        McFadden</a></p>
+  </div>
+
   <script>
     async function fetchWinners() {
       const res = await fetch('/api/current_numbers');
@@ -193,11 +199,6 @@
         list.appendChild(div);
       });
     }
-
-    <div class="thank-you-container">
-      <p>Built for <a href="https://oofd.org" target="_blank">Out Our Front Door</a> with 💙 by <a href="https://github.com/brandonmcfadd/oofd-raffle" target="_blank">Brandon
-        McFadden</a></p>
-    </div>
 
     document.getElementById('new-winner-form').addEventListener('submit', async function (e) {
       e.preventDefault();
