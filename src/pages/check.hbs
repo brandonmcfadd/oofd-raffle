@@ -42,8 +42,26 @@
       background: black;
       color: white;
       padding: 2rem;
+      padding-bottom: 4rem;
       text-align: center;
       margin: 0;
+    }
+
+    .thank-you-container {
+      position: fixed;
+      bottom: 1rem;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 1rem;
+    }
+
+    a,
+    a:hover,
+    a:active,
+    a:visited {
+      color: white;
     }
 
     .logo-container {
@@ -59,10 +77,12 @@
       font-size: 2.25rem;
       margin: 0.25rem;
     }
+
     h2 {
       font-size: 2rem;
       margin: 0.5rem;
     }
+
     h3 {
       font-size: 1.75rem;
       margin: 0.5rem;
@@ -135,9 +155,11 @@
       h1 {
         font-size: 1.75rem;
       }
+
       h2 {
         font-size: 1.5rem;
       }
+
       h3 {
         font-size: 1.25rem;
         margin-bottom: 0.5rem;
@@ -157,7 +179,8 @@
   </div>
 
   <h1>Check Your Hootenanny Raffle Ticket!</h1>
-  <h2>Prizes can be claimed at the prize table! Winners must be present to collect their prize, and prizes must be collected by 9:05pm!</h2>
+  <h2>Prizes can be claimed at the prize table! Winners must be present to collect their prize, and prizes must be
+    collected by 9:05pm!</h2>
 
   <form id="ticketForm" onsubmit="checkTicket(event)">
     <input type="text" id="ticketInput" placeholder="Enter your ticket number" inputmode="numeric" pattern="\d*"
@@ -166,6 +189,12 @@
   </form>
 
   <div class="result" id="result"></div>
+
+  <div class="thank-you-container">
+    <p>Built for <a href="https://oofd.org" target="_blank">Out Our Front Door</a> with 💙 by <a
+        href="https://github.com/brandonmcfadd/oofd-raffle" target="_blank">Brandon
+        McFadden</a></p>
+  </div>
 
   <script>
     async function checkTicket(event) {
