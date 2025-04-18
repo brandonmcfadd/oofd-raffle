@@ -103,5 +103,10 @@
     "ShortDesc": "Sodo Sling Bag + Ortlieb Panniers",
     "Donor": "Chrome Industries, Offbeat Bikes",
     "Value": 255
+  },
+  "99": {
+    "ShortDesc": "Thank you for attending!",
+    "Donor": "oofd.org",
+    "Value": 999
   }
 }
