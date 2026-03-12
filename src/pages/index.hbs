@@ -232,6 +232,11 @@
         opacity: 0.9;
       }
     }
+
+    .hidden {
+      display: none;
+      visibility: hidden;
+    }
   </style>
 
 </head>
@@ -246,7 +251,7 @@
   <h3>Winners must be present to collect their prize, and prizes must be collected by 9:05pm!</h3>
 
 
-  <div class="main-number-container">
+  <div id="main-number-container" class="main-number-container">
     <div id="main-number" class="main-number"></div>
     <div id="main-prize" class="main-prize"></div>
     <div id="main-prize-donor" class="main-prize-donor"></div>
@@ -273,6 +278,7 @@
         const response = await fetch('/api/current_numbers');
         const data = (await response.json()).slice().reverse();
 
+        const mainNumberDiv = document.getElementById('main-number-container');
         const mainNumberEl = document.getElementById('main-number');
         const mainPrizeEl = document.getElementById('main-prize');
         const mainPrizeEl2 = document.getElementById('main-prize-donor');
@@ -280,13 +286,17 @@
 
         if (Array.isArray(data) && data.length > 0) {
           // Update main number
-          mainNumberEl.innerHTML = `Ticket #${data[0].number}<br>Prize #${data[0].prize_number}`;
-          mainPrizeEl.innerHTML = data[0].prize;
-          mainPrizeEl2.innerHTML = `<b>Donor:</b> <i>${data[0].donor}</i>`;
+          //mainNumberEl.innerHTML = `Ticket #${data[0].number}<br>Prize #${data[0].prize_number}`;
+          //mainPrizeEl.innerHTML = data[0].prize;
+          //mainPrizeEl2.innerHTML = `<b>Donor:</b> <i>${data[0].donor}</i>`;
+
+          mainNumberDiv.classList.add('hidden')
 
           // Update other numbers
           otherContainer.innerHTML = '';
-          data.slice(1).forEach(entry => {
+          
+          //data.slice(1).forEach(entry => {
+          data.forEach(entry => {
             const div = document.createElement('div');
             div.className = 'other-number';
             div.innerHTML = `
@@ -298,6 +308,7 @@
           });
         } else {
           // Only reset if not already in "Waiting..." state
+          mainNumberDiv.classList.remove("hidden")
           if (mainNumberEl.textContent !== "Waiting...") {
             mainNumberEl.textContent = "Waiting...";
             mainPrizeEl.textContent = "Drum Roll Please 🥁🙏";
