@@ -1,112 +1,112 @@
 {
   "1": {
-    "ShortDesc": "Medium Lookfar Black & White Bike",
-    "Donor": "Fairdale",
-    "Value": 629
+    "ShortDesc": "Trek FX Sport 3 Bike",
+    "Donor": "Wheel and Sprocket",
+    "Value": 1600
   },
   "2": {
-    "ShortDesc": "A Bike",
-    "Donor": "Wheel and Sprocket",
-    "Value": null
+    "ShortDesc": "Patagonia Prize Pack (Duffel, Daypack, Sling, Tote, Hat)",
+    "Donor": "Patagonia",
+    "Value": 471
   },
   "3": {
-    "ShortDesc": "Tour de Chequamegon Ticket (104-Mile Bikepacking Trip)",
-    "Donor": "Wheel and Sprocket",
-    "Value": 575
+    "ShortDesc": "Junior Ranger Panniers",
+    "Donor": "Erica Sazo",
+    "Value": 335
   },
   "4": {
-    "ShortDesc": "Bike Build with Brian",
-    "Donor": "Cog Cycles and Yarn",
-    "Value": 200
+    "ShortDesc": "Topeak Trunk Bag, Ortlieb Frame Pack",
+    "Donor": "Erica Sazo",
+    "Value": 305
   },
   "5": {
-    "ShortDesc": "Miir Bottle, Hip Pack, and Black Hole 32L Pack",
-    "Donor": "Patagonia",
-    "Value": 268
+    "ShortDesc": "State Bicycle Bags, Topeak DryBag, Two Wheel Gear Bag",
+    "Donor": "Erica Sazo",
+    "Value": 300
   },
   "6": {
-    "ShortDesc": "Black Hole Waist Pack and Duffel 55L",
-    "Donor": "Patagonia",
-    "Value": 248
+    "ShortDesc": "Deuter Bags, Assorted Bike Bags",
+    "Donor": "Erica Sazo",
+    "Value": 305
   },
   "7": {
-    "ShortDesc": "Ortlieb Panniers and Water Bottles",
-    "Donor": "Boulevard Bikes",
-    "Value": 230
+    "ShortDesc": "4-Day Bike Rental",
+    "Donor": "OFFBEAT",
+    "Value": 800
   },
   "8": {
-    "ShortDesc": "$150 Gift Card + Ride with GPS Premium",
-    "Donor": "JC Lind Bike Shop, Ride with GPS",
-    "Value": 230
+    "ShortDesc": "Vittoria Gift Card + Tires + Air Liners + Sealant",
+    "Donor": "Vittoria",
+    "Value": 500
   },
   "9": {
-    "ShortDesc": "Road Runner Bikepacking Panniers",
-    "Donor": "Pedal to the People",
-    "Value": 325
+    "ShortDesc": "Flower Farm Experience for 3, Shedd Kayak Program for 2",
+    "Donor": "Verdant Place, Shedd Aquarium",
+    "Value": 330
   },
   "10": {
-    "ShortDesc": "Helinox Chair + Arboretum Passes",
-    "Donor": "Helinox, Morton Arboretum",
-    "Value": 259
-  },
-  "11": {
-    "ShortDesc": "Sunset Chair + Mesh Beach Chair",
-    "Donor": "Helinox",
+    "ShortDesc": "Bike Photoshoot, Seedlings, Garden Gift Card",
+    "Donor": "Viktor, Eric Bolden, Christy Webber Farm & Garden",
     "Value": 350
   },
+  "11": {
+    "ShortDesc": "Music Venue Gift Card, Restaurant Gift Card, Clothing Bundle",
+    "Donor": "Robert's Westside Music Venue, Cody's Public House, Kone Ranger",
+    "Value": 336
+  },
   "12": {
-    "ShortDesc": "Bike Tune-Up, T-Shirt, Ride with GPS Premium",
-    "Donor": "Roscoe Village Cycles, Ride with GPS",
-    "Value": 200
+    "ShortDesc": "Bike Bags, Tune-Up, Ride with GPS Subscription",
+    "Donor": "BFF Bikes, Ride with GPS",
+    "Value": 380
   },
   "13": {
-    "ShortDesc": "Tune-Up, Ride with GPS Premium, Arboretum Passes",
-    "Donor": "BFF Bikes, Ride with GPS, Morton Arboretum",
-    "Value": 225
+    "ShortDesc": "Waterproof Backpack, Velo Orange Accessories",
+    "Donor": "Erica Sazo, Velo Orange",
+    "Value": 319
   },
   "14": {
-    "ShortDesc": "Private Garden Experience for 3",
-    "Donor": "Verdant Place",
-    "Value": 200
+    "ShortDesc": "Bike Tune-Up, Chrome Gear Bundle",
+    "Donor": "Mack's Bike & Goods, Chrome",
+    "Value": 345
   },
   "15": {
-    "ShortDesc": "Seedlings, Gift Cards, Bars, Book",
-    "Donor": "Eric Bolden, Avondale Bowl, Five Point Holistic, Jimmybar, Dave Glow",
-    "Value": 284
+    "ShortDesc": "Tune-Up, Bike Lane Uprising Gear, Arboretum Passes",
+    "Donor": "Mack's Bike & Goods, Bike Lane Uprising, Morton Arboretum",
+    "Value": 315
   },
   "16": {
-    "ShortDesc": "POC Helmet, Book, Bars, Arboretum Passes, Kadet Sling",
-    "Donor": "Jordan Evangelista, Dave Glow, Jimmybar, Morton Arboretum, Chrome Industries",
-    "Value": 294
+    "ShortDesc": "Health Gift Certificate, Tune-Up, Ride with GPS",
+    "Donor": "Five Point Holistic Health, Roscoe Village Cycles, Ride with GPS",
+    "Value": 340
   },
   "17": {
-    "ShortDesc": "Handlebar, Bars, Arboretum Passes, Cage, Bottle, Socks",
-    "Donor": "PNW Components, Jimmybar, Morton Arboretum, PDW",
-    "Value": 268
+    "ShortDesc": "Pizza Gift Card, Transit Tees Bundle, Bowling, Tune-Up",
+    "Donor": "Pizza Lobo, Transit Tees, Avondale Bowl, Tailwind Cycles",
+    "Value": 375
   },
   "18": {
-    "ShortDesc": "Alarm, Lights, Bars, Arboretum Passes, Handlebar & Tape",
-    "Donor": "Knog, Jimmybar, Morton Arboretum, PNW Components",
-    "Value": 325
+    "ShortDesc": "Po Campo Bag, Helmet, Nutrition Bundle, Ride with GPS",
+    "Donor": "Po Campo, Electra, Jimmybar, Ride with GPS",
+    "Value": 350
   },
   "19": {
-    "ShortDesc": "Bell, Water Bottle, Bars, T-Shirt, Cage, Bag",
-    "Donor": "Spurcycle, Jimmybar, PDW, Chrome Industries",
-    "Value": 310
+    "ShortDesc": "Custom Bag Gift Card, Book, Coffee, Maple Syrup, Nutrition Bundle",
+    "Donor": "Polygon Bags, Brick of Chicago, Stivers Coffee, LaLonde Family, Jimmybar",
+    "Value": 360
   },
   "20": {
-    "ShortDesc": "Compact Bell, Bars, Citizen 24L Bag",
-    "Donor": "Spurcycle, Jimmybar, Chrome Industries",
-    "Value": 259
+    "ShortDesc": "Specialized Gear, Velo Orange Accessories, Yoga, Chiropractic",
+    "Donor": "Specialized, Velo Orange, Ahimsa Yoga, West Loop Spine & Stability",
+    "Value": 328
   },
   "21": {
-    "ShortDesc": "Sodo Sling Bag + Ortlieb Panniers",
-    "Donor": "Chrome Industries, Offbeat Bikes",
-    "Value": 255
+    "ShortDesc": "Wald Basket, Swift Industries Bags",
+    "Donor": "Pedal to the People",
+    "Value": 340
   },
-  "99": {
-    "ShortDesc": "Thank you for attending!",
-    "Donor": "oofd.org",
-    "Value": 999
+  "22": {
+    "ShortDesc": "Bike Lane Uprising Bag, Book, Tune-Up",
+    "Donor": "Bike Lane Uprising, Glenn Schneider, Tailwind Cycles",
+    "Value": 177
   }
 }
