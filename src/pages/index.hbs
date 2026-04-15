@@ -482,7 +482,7 @@
           // Render all other prizes
           otherPrizes.forEach(entry => {
             if (entry.prize_number == 22) {
-              winning_entry_number = "Winner: " + (bingo_winner_data[-1].name)
+              winning_entry_number = "Winner: " + (bingo_winner_data[bingo_winner_data.length - 1].name)
             } else {
               winning_entry_number = "Ticket #" + (entry.number)
             }
