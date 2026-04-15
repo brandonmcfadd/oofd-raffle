@@ -400,11 +400,13 @@
         McFadden</a></p>
   </div>
 
-  <script>
+  <script>    
     async function fetchRaffleNumbers() {
       try {
         const response = await fetch('/api/current_numbers');
-        const data = (await response.json()).slice().reverse();
+        const bingo_winner = await fetch('/api/current_numbers/bingo')
+        const data = (await response.json()).slice();
+        const bingo_winner_data = (await bingo_winner.json());
 
         const mainNumberDiv = document.getElementById('main-number-container');
         const mainNumberDiv2 = document.getElementById('main-number-container-2');
@@ -479,10 +481,15 @@
 
           // Render all other prizes
           otherPrizes.forEach(entry => {
+            if (entry.prize_number == 22) {
+              winning_entry_number = "Winner: " + (bingo_winner_data[0].name)
+            } else {
+              winning_entry_number = "Ticket #" + (entry.number)
+            }
             const div = document.createElement('div');
             div.className = 'other-number';
             div.innerHTML = `
-      <div class="other-number-number">Ticket #${entry.number}<br>Prize #${entry.prize_number}</div>
+      <div class="other-number-number">${winning_entry_number}<br>Prize #${entry.prize_number}</div>
       <div class="other-number-prize">${entry.prize}</div>
       <div class="other-number-donor"><b>Donor:</b> <i>${entry.donor}</i></div>
       <div class="other-number-donor"><b>Value:</b> <i>$${entry.value}</i></div>

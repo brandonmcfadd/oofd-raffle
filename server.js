@@ -74,6 +74,12 @@ fastify.get('/api/current_numbers', async (request, reply) => {
   return reply.send(enriched);
 });
 
+fastify.get('/api/current_numbers/bingo', async (request, reply) => {
+  await storage.init();
+  const bingo_winner = await storage.getItem('bingo_winner') || [];
+  return reply.send(bingo_winner);
+});
+
 
 fastify.post("/api/current_numbers", async function (request, reply) {
   const { ticket_number, prize } = request.body;
@@ -98,6 +104,27 @@ fastify.post("/api/current_numbers", async function (request, reply) {
   return reply.send({ status: true, count: updated.length });
 });
 
+fastify.post("/api/current_numbers/bingo", async function (request, reply) {
+  const { name } = request.body;
+
+  if (!name) {
+    return reply.code(400).send({ error: "Missing name" });
+  }
+
+  await storage.init();
+
+  const existing = await storage.getItem("bingo_winner") || [];
+
+  const newEntry = {
+    name: name.toString()
+  };
+
+  const updated = existing.concat(newEntry);
+
+  await storage.setItem("bingo_winner", updated);
+
+  return reply.send({ status: true, count: updated.length });
+});
 
 fastify.post("/api/delete_number", async function (request, reply) {
   const { ticket_number } = request.body;
