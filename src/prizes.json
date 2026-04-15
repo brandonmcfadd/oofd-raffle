@@ -5,7 +5,7 @@
     "Value": 1600
   },
   "2": {
-    "ShortDesc": "Patagonia Prize Pack (Duffel, Daypack, Sling, Tote, Hat)",
+    "ShortDesc": "Patagonia Prize Pack (55L Black Hole, 30L Daypack, Sling, Tote, Trucker Hat)",
     "Donor": "Patagonia",
     "Value": 471
   },
@@ -20,22 +20,22 @@
     "Value": 305
   },
   "5": {
-    "ShortDesc": "State Bicycle Bags, Topeak DryBag, Two Wheel Gear Bag",
+    "ShortDesc": "State Bicycle Co Bags, Topeak Pannier DryBag, Two Wheel Gear Bag",
     "Donor": "Erica Sazo",
     "Value": 300
   },
   "6": {
-    "ShortDesc": "Deuter Bags, Assorted Bike Bags",
+    "ShortDesc": "Deuter Cabezon Bags, Assorted Bike Bags",
     "Donor": "Erica Sazo",
     "Value": 305
   },
   "7": {
     "ShortDesc": "4-Day Bike Rental",
-    "Donor": "OFFBEAT",
+    "Donor": "Offbeat Bikes",
     "Value": 800
   },
   "8": {
-    "ShortDesc": "Vittoria Gift Card + Tires + Air Liners + Sealant",
+    "ShortDesc": "Vittoria Gift Card (Tires + Air Liners + Sealant)",
     "Donor": "Vittoria",
     "Value": 500
   },
@@ -46,12 +46,12 @@
   },
   "10": {
     "ShortDesc": "Bike Photoshoot, Seedlings, Garden Gift Card",
-    "Donor": "Viktor, Eric Bolden, Christy Webber Farm & Garden",
+    "Donor": "Viktor, Eric Bolden, Christy Webber Farm",
     "Value": 350
   },
   "11": {
-    "ShortDesc": "Music Venue Gift Card, Restaurant Gift Card, Clothing Bundle",
-    "Donor": "Robert's Westside Music Venue, Cody's Public House, Kone Ranger",
+    "ShortDesc": "Two Gift Cards and Kone Ranger Clothing Bundle",
+    "Donor": "Robert's Westside, Cody's Public House, Kone Ranger",
     "Value": 336
   },
   "12": {

@@ -91,13 +91,28 @@
       background: black;
     }
 
+    .main-number-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
     .main-number-container {
       background: white;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      display: inline-block;
+      padding: 1rem 1rem;
+      border-radius: 5px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      width: 550px;
+      min-height: 160px;
+
       text-align: center;
+      box-sizing: border-box;
     }
 
     .main-number {
@@ -136,7 +151,12 @@
       border-radius: 10px;
       min-width: 250px;
       max-width: 250px;
-      /* Ensure some consistent size */
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
       text-align: center;
     }
 
@@ -158,6 +178,21 @@
     .qr-code-container {
       display: none;
       /* hidden by default, shown only on desktop */
+    }
+
+    .main-number,
+    .main-prize,
+    .main-prize-donor {
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    .other-number-number,
+    .other-number-prize,
+    .other-number-donor {
+      width: 100%;
+      text-align: center;
     }
 
     /* Base styles (desktop/tablet) already mostly set correctly */
@@ -223,13 +258,27 @@
         z-index: 1000;
         color: white;
         font-size: 1.15rem;
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
         /* ensure it appears above background */
+      }
+
+      .qr-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
 
       .qr-code {
         width: 150px;
         height: auto;
         opacity: 0.9;
+      }
+
+      .other-numbers.spaced {
+        padding-top: 3.5rem;
       }
     }
 
@@ -248,27 +297,43 @@
 
   <h1>Hootenanny Raffle Numbers</h1>
   <h2>Prizes can be claimed at the prize table!</h2>
-  <h3>Winners must be present to collect their prize, and prizes must be collected by 9:05pm!</h3>
+  <h3>Winners must be present to collect their prize, and prizes must be collected by 9pm!</h3>
 
+  <div class="main-number-row">
+    <div id="main-number-container" class="main-number-container">
+      <div id="main-number" class="main-number"></div>
+      <div id="main-prize" class="main-prize"></div>
+      <div id="main-prize-donor" class="main-prize-donor"></div>
+      <div id="main-prize-value" class="main-prize-donor"></div>
+    </div>
 
-  <div id="main-number-container" class="main-number-container">
-    <div id="main-number" class="main-number"></div>
-    <div id="main-prize" class="main-prize"></div>
-    <div id="main-prize-donor" class="main-prize-donor"></div>
+    <div id="main-number-container-2" class="main-number-container">
+      <div id="main-number-2" class="main-number"></div>
+      <div id="main-prize-2" class="main-prize"></div>
+      <div id="main-prize-donor-2" class="main-prize-donor"></div>
+      <div id="main-prize-value-2" class="main-prize-donor"></div>
+    </div>
   </div>
-
 
   <div id="other-numbers" class="other-numbers">
     <!-- JS will populate this -->
   </div>
 
   <div class="qr-code-container">
-    <img src="/qrcode.svg" alt="QR Code" class="qr-code">
-    <p>Scan Here or visit<br>hootenanny.oofd.org<br>to check your ticket!</p>
+    <div class="qr-block">
+      <img src="/raffle-check-qr.svg" alt="Check Ticket QR" class="qr-code">
+      <p>Scan above or visit<br>hootenanny.oofd.org<br>to check your ticket!</p>
+    </div>
+
+    <div class="qr-block">
+      <img src="/direct-ask-qr.svg" alt="Donate QR" class="qr-code">
+      <p>Scan above to donate!</p>
+    </div>
   </div>
 
   <div class="thank-you-container">
-    <p>Built for <a href="https://oofd.org" target="_blank">Out Our Front Door</a> with 💙 by <a href="https://github.com/brandonmcfadd/oofd-raffle" target="_blank">Brandon
+    <p>Built for <a href="https://oofd.org" target="_blank">Out Our Front Door</a> with 💙 by <a
+        href="https://github.com/brandonmcfadd/oofd-raffle" target="_blank">Brandon
         McFadden</a></p>
   </div>
 
@@ -279,33 +344,85 @@
         const data = (await response.json()).slice().reverse();
 
         const mainNumberDiv = document.getElementById('main-number-container');
-        const mainNumberEl = document.getElementById('main-number');
-        const mainPrizeEl = document.getElementById('main-prize');
-        const mainPrizeEl2 = document.getElementById('main-prize-donor');
+        const mainNumberDiv2 = document.getElementById('main-number-container-2');
         const otherContainer = document.getElementById('other-numbers');
 
         if (Array.isArray(data) && data.length > 0) {
-          // Update main number
-          //mainNumberEl.innerHTML = `Ticket #${data[0].number}<br>Prize #${data[0].prize_number}`;
-          //mainPrizeEl.innerHTML = data[0].prize;
-          //mainPrizeEl2.innerHTML = `<b>Donor:</b> <i>${data[0].donor}</i>`;
-
-          mainNumberDiv.classList.add('hidden')
-
-          // Update other numbers
           otherContainer.innerHTML = '';
-          
-          //data.slice(1).forEach(entry => {
-          data.forEach(entry => {
+
+          // Find grand prizes (1 & 2)
+          const grandPrizes = [1, 2]
+            .map(num => data.find(entry => entry.prize_number == num))
+            .filter(Boolean);
+
+          const otherPrizes = data
+            .filter(entry => entry.prize_number != 1 && entry.prize_number != 2)
+            .sort((a, b) => Number(a.prize_number) - Number(b.prize_number));
+
+          if (grandPrizes.length > 0) {
+            // Show main container
+            mainNumberDiv.classList.remove('hidden');
+            mainNumberDiv2.classList.remove('hidden');
+            otherContainer.classList.remove('spaced');
+
+            const prize1 = data.find(entry => entry.prize_number == 1);
+            const prize2 = data.find(entry => entry.prize_number == 2);
+
+            // ===== PRIZE 1 =====
+            const container1 = document.getElementById('main-number-container');
+            const number1 = document.getElementById('main-number');
+            const prize1El = document.getElementById('main-prize');
+            const donor1 = document.getElementById('main-prize-donor');
+            const value1 = document.getElementById('main-prize-value');
+
+            if (prize1) {
+              container1.classList.remove('hidden');
+
+              number1.innerHTML = `Ticket #${prize1.number}<br>Prize #1`;
+              prize1El.innerHTML = prize1.prize;
+              donor1.innerHTML = `<b>Donor:</b> <i>${prize1.donor}</i>`;
+              value1.innerHTML = `<b>Value:</b> <i>$${prize1.value}</i>`;
+            } else {
+              container1.classList.add('hidden');
+            }
+
+            // ===== PRIZE 2 =====
+            const container2 = document.getElementById('main-number-container-2');
+            const number2 = document.getElementById('main-number-2');
+            const prize2El = document.getElementById('main-prize-2');
+            const donor2 = document.getElementById('main-prize-donor-2');
+            const value2 = document.getElementById('main-prize-value-2');
+
+            if (prize2) {
+              container2.classList.remove('hidden');
+
+              number2.innerHTML = `Ticket #${prize2.number}<br>Prize #2`;
+              prize2El.innerHTML = prize2.prize;
+              donor2.innerHTML = `<b>Donor:</b> <i>${prize2.donor}</i>`;
+              value2.innerHTML = `<b>Value:</b> <i>$${prize2.value}</i>`;
+            } else {
+              container2.classList.add('hidden');
+            }
+          } else {
+            // Hide main container if no grand prizes drawn yet
+            mainNumberDiv.classList.add('hidden');
+            mainNumberDiv2.classList.add('hidden');
+            otherContainer.classList.add('spaced');
+          }
+
+          // Render all other prizes
+          otherPrizes.forEach(entry => {
             const div = document.createElement('div');
             div.className = 'other-number';
             div.innerHTML = `
-            <div class="other-number-number">Ticket #${entry.number}<br>Prize #${entry.prize_number}</div>
-            <div class="other-number-prize">${entry.prize}</div>
-            <div class="other-number-donor"><b>Donor:</b> <i>${entry.donor}</i></div>
-          `;
+      <div class="other-number-number">Ticket #${entry.number}<br>Prize #${entry.prize_number}</div>
+      <div class="other-number-prize">${entry.prize}</div>
+      <div class="other-number-donor"><b>Donor:</b> <i>${entry.donor}</i></div>
+      <div class="other-number-donor"><b>Value:</b> <i>$${entry.value}</i></div>
+    `;
             otherContainer.appendChild(div);
           });
+
         } else {
           // Only reset if not already in "Waiting..." state
           mainNumberDiv.classList.remove("hidden")

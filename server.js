@@ -4,7 +4,6 @@
  */
 
 const path = require("path");
-
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
   // Set this to true for detailed logging:
@@ -36,7 +35,6 @@ fastify.register(require("@fastify/view"), {
     handlebars: handlebars,
   },
 }); 
-
 const fs = require('fs');
 const prizes = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/prizes.json')));
 
@@ -68,7 +66,9 @@ fastify.get('/api/current_numbers', async (request, reply) => {
     donor: prizes[entry.prize].Donor 
       ? `${prizes[entry.prize].Donor}` 
       : ``,
-    
+    value: prizes[entry.prize].Value 
+      ? `${prizes[entry.prize].Value}` 
+      : ``
   }));
 
   return reply.send(enriched);
