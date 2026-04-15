@@ -414,6 +414,7 @@
         const mainNumberEl = document.getElementById('main-number');
         const mainPrizeEl = document.getElementById('main-prize');
         const mainPrizeEl2 = document.getElementById('main-prize-donor');
+        const value1 = document.getElementById('main-prize-value');
 
         if (Array.isArray(data) && data.length > 0) {
           otherContainer.innerHTML = '';
@@ -441,7 +442,6 @@
             const number1 = document.getElementById('main-number');
             const prize1El = document.getElementById('main-prize');
             const donor1 = document.getElementById('main-prize-donor');
-            const value1 = document.getElementById('main-prize-value');
 
             if (prize1) {
               container1.classList.remove('hidden');
@@ -501,6 +501,7 @@
           // Only reset if not already in "Waiting..." state
           mainNumberDiv.classList.remove("hidden")
           mainNumberDiv2.classList.add('hidden');
+          value1.classList.add('hidden');
           if (mainNumberEl.textContent !== "Waiting...") {
             mainNumberEl.textContent = "Waiting...";
             mainPrizeEl.textContent = "Drum Roll Please 🥁🙏";
