@@ -7,7 +7,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "@fastify/formbody": "^8.0.0",
+    "@fastify/formbody": "^8.0.2",
     "@fastify/static": "^8.0.0",
     "@fastify/view": "^10.0.0",
     "dotenv": "^8.6.0",
