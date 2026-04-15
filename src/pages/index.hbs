@@ -31,6 +31,33 @@
   <meta charset="UTF-8">
   <title>Raffle Numbers</title>
   <style>
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-text h1,
+    .header-text h2,
+    .header-text h3 {
+      margin: 0.25rem 0;
+    }
+
+    .header-row .logo {
+      height: 8rem;
+      width: auto;
+    }
+
     .logo-container {
       position: absolute;
       top: 1rem;
@@ -96,7 +123,7 @@
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .main-number-container {
@@ -109,31 +136,31 @@
       justify-content: center;
 
       width: 550px;
-      min-height: 160px;
+      min-height: 100px;
 
       text-align: center;
       box-sizing: border-box;
     }
 
     .main-number {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: bold;
       color: #d32f2f;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.25rem;
       min-width: 300px;
     }
 
     .main-prize {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       color: black;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
 
     .main-prize-donor {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       color: black;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
 
     .other-numbers {
@@ -247,34 +274,65 @@
         font-size: 1.25rem;
         margin: 0.5rem;
       }
-    }
 
-    @media (min-width: 1101px) {
-      .qr-code-container {
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        display: block;
-        z-index: 1000;
-        color: white;
-        font-size: 1.15rem;
+      .header-row {
         display: flex;
+        align-items: center;
+        justify-content: center;
         gap: 1.5rem;
-        align-items: flex-start;
-        /* ensure it appears above background */
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
       }
 
-      .qr-block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      .header-text {
         text-align: center;
       }
 
-      .qr-code {
-        width: 150px;
-        height: auto;
-        opacity: 0.9;
+      .header-row .logo {
+        height: 8rem;
+        padding: 0;
+      }
+    }
+
+    @media (min-width: 1101px) {
+      .qr-code-left {
+        display: none;
+      }
+
+      @media (min-width: 1101px) {
+        .qr-code-left {
+          position: fixed;
+          top: 1rem;
+          left: 1rem;
+          display: block;
+          z-index: 1000;
+          color: white;
+          font-size: 1.15rem;
+        }
+
+        .qr-code-right {
+          position: fixed;
+          top: 1rem;
+          right: 1rem;
+          display: block;
+          z-index: 1000;
+          color: white;
+          font-size: 1.15rem;
+          text-align: center;
+        }
+
+        .qr-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .qr-code {
+          width: 150px;
+          height: auto;
+          opacity: 0.9;
+        }
       }
 
       .other-numbers.spaced {
@@ -291,13 +349,15 @@
 </head>
 
 <body>
-  <div class="logo-container">
+  <div class="header-row">
     <img src="/logo.png" alt="Logo" class="logo">
-  </div>
 
-  <h1>Hootenanny Raffle Numbers</h1>
-  <h2>Prizes can be claimed at the prize table!</h2>
-  <h3>Winners must be present to collect their prize, and prizes must be collected by 9pm!</h3>
+    <div class="header-text">
+      <h1>Hootenanny Raffle Numbers</h1>
+      <h2>Prizes can be claimed at the prize table!</h2>
+      <h3>Winners must be present to collect their prize, and prizes must be collected by 9pm!</h3>
+    </div>
+  </div>
 
   <div class="main-number-row">
     <div id="main-number-container" class="main-number-container">
@@ -319,12 +379,14 @@
     <!-- JS will populate this -->
   </div>
 
-  <div class="qr-code-container">
+  <div class="qr-code-left">
     <div class="qr-block">
       <img src="/raffle-check-qr.svg" alt="Check Ticket QR" class="qr-code">
       <p>Scan above or visit<br>hootenanny.oofd.org<br>to check your ticket!</p>
     </div>
+  </div>
 
+  <div class="qr-code-right">
     <div class="qr-block">
       <img src="/direct-ask-qr.svg" alt="Donate QR" class="qr-code">
       <p>Scan above to donate!</p>
@@ -346,6 +408,9 @@
         const mainNumberDiv = document.getElementById('main-number-container');
         const mainNumberDiv2 = document.getElementById('main-number-container-2');
         const otherContainer = document.getElementById('other-numbers');
+        const mainNumberEl = document.getElementById('main-number');
+        const mainPrizeEl = document.getElementById('main-prize');
+        const mainPrizeEl2 = document.getElementById('main-prize-donor');
 
         if (Array.isArray(data) && data.length > 0) {
           otherContainer.innerHTML = '';
@@ -378,12 +443,13 @@
             if (prize1) {
               container1.classList.remove('hidden');
 
-              number1.innerHTML = `Ticket #${prize1.number}<br>Prize #1`;
+              number1.innerHTML = `Ticket #${prize1.number}<br>Grand Prize #1`;
               prize1El.innerHTML = prize1.prize;
               donor1.innerHTML = `<b>Donor:</b> <i>${prize1.donor}</i>`;
               value1.innerHTML = `<b>Value:</b> <i>$${prize1.value}</i>`;
             } else {
               container1.classList.add('hidden');
+              value1.classList.add('hidden');
             }
 
             // ===== PRIZE 2 =====
@@ -396,7 +462,7 @@
             if (prize2) {
               container2.classList.remove('hidden');
 
-              number2.innerHTML = `Ticket #${prize2.number}<br>Prize #2`;
+              number2.innerHTML = `Ticket #${prize2.number}<br>Grand Prize #2`;
               prize2El.innerHTML = prize2.prize;
               donor2.innerHTML = `<b>Donor:</b> <i>${prize2.donor}</i>`;
               value2.innerHTML = `<b>Value:</b> <i>$${prize2.value}</i>`;
@@ -426,6 +492,7 @@
         } else {
           // Only reset if not already in "Waiting..." state
           mainNumberDiv.classList.remove("hidden")
+          mainNumberDiv2.classList.add('hidden');
           if (mainNumberEl.textContent !== "Waiting...") {
             mainNumberEl.textContent = "Waiting...";
             mainPrizeEl.textContent = "Drum Roll Please 🥁🙏";
