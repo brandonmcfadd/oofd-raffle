@@ -17,7 +17,7 @@
     "node-persist": "^3.1.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": "25.x"
   },
   "repository": {
     "url": "https://github.com/brandonmcfadd/oofd-raffle"
