@@ -222,6 +222,14 @@
       text-align: center;
     }
 
+    .goal-meter {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      /* keeps it above other content */
+    }
+
     /* Base styles (desktop/tablet) already mostly set correctly */
 
     /* Responsive tweaks for mobile */
@@ -292,49 +300,54 @@
         height: 8rem;
         padding: 0;
       }
+
       .qr-code-left {
         display: none;
       }
-      
+
       .qr-code-right {
+        display: none;
+      }
+
+      .goal-meter {
         display: none;
       }
     }
 
     @media (min-width: 1101px) {
-        .qr-code-left {
-          position: fixed;
-          top: 1rem;
-          left: 1rem;
-          display: block;
-          z-index: 1000;
-          color: white;
-          font-size: 1.15rem;
-        }
+      .qr-code-left {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        display: block;
+        z-index: 1000;
+        color: white;
+        font-size: 1.15rem;
+      }
 
-        .qr-code-right {
-          position: fixed;
-          top: 1rem;
-          right: 1rem;
-          display: block;
-          z-index: 1000;
-          color: white;
-          font-size: 1.15rem;
-          text-align: center;
-        }
+      .qr-code-right {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        display: block;
+        z-index: 1000;
+        color: white;
+        font-size: 1.15rem;
+        text-align: center;
+      }
 
-        .qr-block {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
+      .qr-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
 
-        .qr-code {
-          width: 150px;
-          height: auto;
-          opacity: 0.9;
-        }
+      .qr-code {
+        width: 150px;
+        height: auto;
+        opacity: 0.9;
+      }
 
       .other-numbers.spaced {
         padding-top: 3.5rem;
@@ -400,7 +413,12 @@
         McFadden</a></p>
   </div>
 
-  <script>    
+  <div id="goal-meter" class="goal-meter">
+    <script
+      src='https://outourfrontdoor.app.neoncrm.com/campaigns/goal-meter/share/Q0FNUEFJR05TSEFSSU5HLUdPQUwtTUVURVIz'></script>
+  </div>
+
+  <script>
     async function fetchRaffleNumbers() {
       try {
         const response = await fetch('/api/current_numbers');
