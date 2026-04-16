@@ -389,7 +389,7 @@
       <div id="main-number" class="main-number"></div>
       <div id="main-prize" class="main-prize"></div>
       <div id="main-prize-donor" class="main-prize-donor"></div>
-      <div id="main-prize-value" class="main-prize-donor"></div>
+      <div id="main-prize-value-1" class="main-prize-donor"></div>
     </div>
 
     <div id="main-number-container-2" class="main-number-container">
@@ -424,7 +424,7 @@
         McFadden</a></p>
   </div>
   <div class="mini-text">
-    <p class="mini-text">Version 0.2.70</p>
+    <p class="mini-text">Version 0.2.72</p>
   </div>
   <script>
     async function fetchRaffleNumbers() {
@@ -440,7 +440,7 @@
         const mainNumberEl = document.getElementById('main-number');
         const mainPrizeEl = document.getElementById('main-prize');
         const mainPrizeEl2 = document.getElementById('main-prize-donor');
-        const value1 = document.getElementById('main-prize-value');
+        const value1 = document.getElementById('main-prize-value-1');
 
         if (Array.isArray(data) && data.length > 0) {
           otherContainer.innerHTML = '';
@@ -468,6 +468,8 @@
             const number1 = document.getElementById('main-number');
             const prize1El = document.getElementById('main-prize');
             const donor1 = document.getElementById('main-prize-donor');
+            const value1 = document.getElementById('main-prize-value');
+            value1.classList.remove('hidden');
 
             if (prize1) {
               container1.classList.remove('hidden');
@@ -476,9 +478,10 @@
               prize1El.innerHTML = prize1.prize;
               donor1.innerHTML = `<b>Donor:</b> <i>${prize1.donor}</i>`;
               value1.innerHTML = `<b>Value:</b> <i>$${prize1.value}</i>`;
+              value1.classList.remove('hidden');
             } else {
               container1.classList.add('hidden');
-              value1.classList.add('hidden');
+              //value1.classList.add('hidden');
             }
 
             // ===== PRIZE 2 =====
@@ -495,6 +498,7 @@
               prize2El.innerHTML = prize2.prize;
               donor2.innerHTML = `<b>Donor:</b> <i>${prize2.donor}</i>`;
               value2.innerHTML = `<b>Value:</b> <i>$${prize2.value}</i>`;
+              value2.classList.remove('hidden');
             } else {
               container2.classList.add('hidden');
             }
@@ -527,11 +531,12 @@
           // Only reset if not already in "Waiting..." state
           mainNumberDiv.classList.remove("hidden")
           mainNumberDiv2.classList.add('hidden');
-          value1.classList.add('hidden');
           if (mainNumberEl.textContent !== "Waiting...") {
+            //value1.classList.add('hidden');
             mainNumberEl.textContent = "Waiting...";
             mainPrizeEl.textContent = "Drum Roll Please 🥁🙏";
             mainPrizeEl2.innerHTML = `<img src="/logo-tent.png" alt="Tent Logo" style="max-width: 250px; height: auto; margin-top: 1rem;">`;
+            value1.innerHTML = ``;
             otherContainer.innerHTML = '';
           }
         }
