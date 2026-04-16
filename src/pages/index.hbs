@@ -413,26 +413,6 @@
         McFadden</a></p>
   </div>
 
-  <div id="goal-meter" class="goal-meter">
-    <script
-      src="https://outourfrontdoor.app.neoncrm.com/campaigns/goal-meter/share/Q0FNUEFJR05TSEFSSU5HLUdPQUwtTUVURVIz"></script>
-  </div>
-
-  <script>
-    function refreshGoalMeter() {
-      console.log("Refreshing Goal Meter")
-      const container = document.getElementById('goal-meter');
-
-      // Save the script src
-      const src = "https://outourfrontdoor.app.neoncrm.com/campaigns/goal-meter/share/Q0FNUEFJR05TSEFSSU5HLUdPQUwtTUVURVIz";
-
-      // Replace entire container (safer than innerHTML reset timing issues)
-      container.innerHTML = `<script src="${src}"><\/script>`;
-    }
-
-    setInterval(refreshGoalMeter, 60000);
-  </script>
-
   <script>
     async function fetchRaffleNumbers() {
       try {
