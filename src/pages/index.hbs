@@ -413,28 +413,24 @@
         McFadden</a></p>
   </div>
 
-  <div id="goal-meter" class="goal-meter"></div>
+  <div id="goal-meter" class="goal-meter">
+    <script
+      src="https://outourfrontdoor.app.neoncrm.com/campaigns/goal-meter/share/Q0FNUEFJR05TSEFSSU5HLUdPQUwtTUVURVIz"></script>
+  </div>
 
   <script>
-    function loadGoalMeter() {
+    function refreshGoalMeter() {
       console.log("Refreshing Goal Meter")
       const container = document.getElementById('goal-meter');
 
-      // Clear existing content
-      container.innerHTML = '';
+      // Save the script src
+      const src = "https://outourfrontdoor.app.neoncrm.com/campaigns/goal-meter/share/Q0FNUEFJR05TSEFSSU5HLUdPQUwtTUVURVIz";
 
-      // Recreate script
-      const script = document.createElement('script');
-      script.src = 'https://outourfrontdoor.app.neoncrm.com/campaigns/goal-meter/share/Q0FNUEFJR05TSEFSSU5HLUdPQUwtTUVURVIz';
-
-      container.appendChild(script);
+      // Replace entire container (safer than innerHTML reset timing issues)
+      container.innerHTML = `<script src="${src}"><\/script>`;
     }
 
-    // Initial load
-    loadGoalMeter();
-
-    // Refresh every 60 seconds
-    setInterval(loadGoalMeter, 60000);
+    setInterval(refreshGoalMeter, 60000);
   </script>
 
   <script>
