@@ -74,6 +74,17 @@
       font-size: 1rem;
     }
 
+    .mini-text {
+      position: fixed;
+      text-align: right;
+      color: white;
+      font-size: 0.75rem;
+      bottom: 0.5rem;
+      right: 1rem;
+      z-index: 1000;
+      /* keeps it above other content */
+    }
+
     a,
     a:hover,
     a:active,
@@ -410,9 +421,11 @@
   <div class="thank-you-container">
     <p>Built for <a href="https://oofd.org" target="_blank">Out Our Front Door</a> with 💙 by <a
         href="https://github.com/brandonmcfadd/oofd-raffle" target="_blank">Brandon
-        McFadden</a></p>
+        McFadden</a></p><br>
   </div>
-
+  <div class="mini-text">
+    <p class="mini-text">Version 0.2.70</p>
+  </div>
   <script>
     async function fetchRaffleNumbers() {
       try {
