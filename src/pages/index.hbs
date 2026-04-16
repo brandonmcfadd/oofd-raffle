@@ -424,7 +424,7 @@
         McFadden</a></p>
   </div>
   <div class="mini-text">
-    <p class="mini-text">Version 0.2.70</p>
+    <p class="mini-text">Version 0.2.72</p>
   </div>
   <script>
     async function fetchRaffleNumbers() {
@@ -476,6 +476,7 @@
               prize1El.innerHTML = prize1.prize;
               donor1.innerHTML = `<b>Donor:</b> <i>${prize1.donor}</i>`;
               value1.innerHTML = `<b>Value:</b> <i>$${prize1.value}</i>`;
+              value1.classList.remove('hidden');
             } else {
               container1.classList.add('hidden');
               value1.classList.add('hidden');
